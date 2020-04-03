@@ -46,7 +46,7 @@ module.exports = {
             WELCOME_MSG: 'Ciao. sono la skill dell\'istituto amedeo d\'aosta di L\'Aquila.',
             WELCOME_BACK_MSG: 'Ciao di nuovo! ',
             HELLO_USER: 'Ciao {{user}} ',
-            HELLO_USER_REPROMPT: 'Ciao {{user}} ',
+            HELLO_USER_REPROMPT: 'Ciao ancora {{user}} ',
             SCHOOL_MSG: `Nel 2011 l’Istituto Tecnico Industriale “Amedeo di Savoia Duca d’Aosta” cambia denominazione nell’attuale Istituto d’Istruzione Superiore ”Amedeo d’Aosta”, sito in Via Acquasanta, L’Aquila. È  costituito da tre lotti, dove sono collocati il biennio al primo lotto e il triennio nel secondo e terzo lotto. Nel piano superiore del terzo lotto sono ubicati la presidenza, gli uffici amministrativi e le segreterie alunni e docenti.`,
             DESC_SCELTE: `All'interno dell'I I S Amedeo d'aosta sono presenti 3 scuole. Liceo delle scienze applicate, istituto tecnico settore tecnologico  e istituto tecnico settore economico`,
             DESC_LICEO_MSG: `La nuova opzione delle “Scienze Applicate” raccoglie l’eredità della sperimentazione del Liceo Scientifico–Tecnologico. E’ finalizzata ad un approfondimento culturale della scienza e alla padronanza dei suoi metodi, con particolare riferimento alle scienze sperimentali. La disciplina Informatica e Sistemi completa il quadro di cultura generale. Questa opzione è, quindi, prevalentemente orientata alla prosecuzione degli studi a livello universitario.`,
