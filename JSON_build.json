@@ -1,0 +1,433 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "aosta aquila",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": [
+                        "arrivederci",
+                        "ciao",
+                        "chiudi"
+                    ]
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": [
+                        "cosa",
+                        "help",
+                        "aiuto"
+                    ]
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": [
+                        "fine",
+                        "stop",
+                        "basta"
+                    ]
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": [
+                        "home",
+                        "casa",
+                        "ricominciamo",
+                        "da capo",
+                        "parola"
+                    ]
+                },
+                {
+                    "name": "descrizioneIstitutoIntent",
+                    "slots": [],
+                    "samples": [
+                        "istituto",
+                        "descrivi scuola",
+                        "descriviti",
+                        "descrivi l'iis",
+                        "descrivi la scuola",
+                        "descrivi l'isituto"
+                    ]
+                },
+                {
+                    "name": "descriviScuoleIntent",
+                    "slots": [
+                        {
+                            "name": "scuola",
+                            "type": "scuolaType",
+                            "samples": [
+                                "sentiamo {scuola}",
+                                "vediamo {scuola}",
+                                "descrivi {scuola}",
+                                "Parlami di {scuola}",
+                                "Vorrei sapere di più su {scuola}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "cosa mi offri",
+                        "quali scelte ho",
+                        "che possibilità ho",
+                        "mi interessa",
+                        "mi piace {scuola}  Me ne parli",
+                        "sono interesato a {scuola}",
+                        "parlami di {scuola}",
+                        "decrivi {scuola}",
+                        "descrivi la scuola {scuola}"
+                    ]
+                },
+                {
+                    "name": "nomeIntent",
+                    "slots": [
+                        {
+                            "name": "nomeUtente",
+                            "type": "AMAZON.Person",
+                            "samples": [
+                                "{nomeUtente}",
+                                "sono {nomeUtente}",
+                                "il mio nome è {nomeUtente}",
+                                "mi chiamo {nomeUtente}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "salve",
+                        "sono {nomeUtente}",
+                        "mi chiamo {nomeUtente}",
+                        "il mio nome è {nomeUtente}"
+                    ]
+                },
+                {
+                    "name": "descriviScelteIntent",
+                    "slots": [],
+                    "samples": [
+                        "qual è la tua offerta",
+                        "fra cosa posso scegliere",
+                        "Cosa posso trovare",
+                        "scelte"
+                    ]
+                }
+            ],
+            "types": [
+                {
+                    "name": "scuolaType",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "economico",
+                                "synonyms": [
+                                    "marketing",
+                                    "internazionale",
+                                    "turismo"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "tecnologico",
+                                "synonyms": [
+                                    "elettronica",
+                                    "computer",
+                                    "meccatronica",
+                                    "meccanica",
+                                    "chimica",
+                                    "informatica",
+                                    "itis"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "liceo",
+                                "synonyms": [
+                                    "Liceo delle scienze applicate",
+                                    "scienze applicate",
+                                    "liceo",
+                                    "LSA"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "dialog": {
+            "intents": [
+                {
+                    "name": "descriviScuoleIntent",
+                    "delegationStrategy": "ALWAYS",
+                    "confirmationRequired": true,
+                    "prompts": {
+                        "confirmation": "Confirm.Intent.456337069940"
+                    },
+                    "slots": [
+                        {
+                            "name": "scuola",
+                            "type": "scuolaType",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.857622225131.260056410308"
+                            },
+                            "validations": [
+                                {
+                                    "type": "hasEntityResolutionMatch",
+                                    "prompt": "Slot.Validation.293075721293.254739392934.840919819703"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "descrizioneIstitutoIntent",
+                    "delegationStrategy": "ALWAYS",
+                    "confirmationRequired": true,
+                    "prompts": {
+                        "confirmation": "Confirm.Intent.1084235392721"
+                    },
+                    "slots": []
+                },
+                {
+                    "name": "nomeIntent",
+                    "delegationStrategy": "ALWAYS",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "nomeUtente",
+                            "type": "AMAZON.Person",
+                            "confirmationRequired": true,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "confirmation": "Confirm.Slot.410047042681.1173600887138",
+                                "elicitation": "Elicit.Slot.705382926643.120796720177"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "delegationStrategy": "ALWAYS"
+        },
+        "prompts": [
+            {
+                "id": "Elicit.Slot.857622225131.260056410308",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Abbiamo varei scelte , quale ti incurisisce"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "A quale scuola sei interessato?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "A quale scuola sei interessato fra quelle disponibili"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Ci sono diverse opportunità. Di quale scuola vuoi che ti parli"
+                    }
+                ]
+            },
+            {
+                "id": "Slot.Validation.857622225131.260056410308.944388945867",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "La nostra è una scuola di scuola, di quale vuoi che ti parli"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Di quale scuola desideri che ti parli"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Scegli la scuola a cui sei interessato"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Intent.857622225131",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Mi confermi che vuoi dettagli di {scuola}"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "ok. Ti parlerò di {scuola}"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Slot.857622225131.260056410308",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Quindi ti parlerò di {scuola} , va bene?"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Intent.1084235392721",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "vuoi che ti descriva l'istituto?"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Intent.1350366833146",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Quindi il tuo nome è {nome} ?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1350366833146.708364695186",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Io sono Alexa, e tu"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Mi piacerebbe conoscere il tuo nome"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Ciao. Come ti chiami"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Slot.1350366833146.708364695186",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "va bene {nome}"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "proseguo {nome}"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Intent.330741970117",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Quindi il tuo nome è {nome} ?"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Slot.510762835355.1303578118240",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Quindi il tuo nome è {nome}"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.705382926643.120796720177",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "come ti chiami"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Quale è il tuo nome"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Slot.556316633089.1286964923043",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Quindi il tuo nome è {nomeUtente} , ho capito bene?"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Intent.893072856004",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Quindi il tuo nome è {nomeUtente} , giusto?"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Slot.410047042681.1173600887138",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Quindi il tuo nome è {nomeUtente} , ho capito bene?"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Intent.1284333752267",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "va bene {scuola}"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "quindi ti parlerò di {scuola} . va bene?"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Slot.293075721293.254739392934",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "va bene {scuola}"
+                    }
+                ]
+            },
+            {
+                "id": "Slot.Validation.293075721293.254739392934.840919819703",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Non capisco, puoi ripetere per favore"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Attenzione la nostra ascelta comprende tecnologico, economico con i relativi indirizzi e liceo "
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Intent.288271599297",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "va bene {scuola}  "
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Intent.456337069940",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "va bene {scuola}"
+                    }
+                ]
+            }
+        ]
+    }
+}
