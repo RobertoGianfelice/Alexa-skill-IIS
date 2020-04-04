@@ -163,20 +163,91 @@ const descriviScuoleIntentHandler = {
         let nome="";
 
         nome = sessionAttributes['nomeUtente'];
+        let scelta="";
 
         if (intent.confirmationStatus === 'CONFIRMED'){
             const scuola = Alexa.getSlotValue(requestEnvelope, 'scuola');
+            scelta=scuola;
             switch (scuola) {
                 case "liceo":
                     speakOutput = nome + " " + handlerInput.t('DESC_LICEO_MSG');
                     break;
                 case "tecnologico":
-                    speakOutput = nome + " " + handlerInput.t('DESC_TECNOLOGICO_MSG');
+                    speakOutput = nome + " " + handlerInput.t('DESC_TECNOLOGICO_MSG') ;
                     break;
                 case "economico":
                     speakOutput = nome + " " + handlerInput.t('DESC_ECONOMICO_MSG');
                     break;
             }
+
+        } else {
+            speakOutput = 'Mi dispiace ' + nome;
+        }
+        if (scelta === "tecnologico" ||  scelta === "economico" ) {
+            return handlerInput.responseBuilder
+                .speak(speakOutput)
+                .addDelegateDirective({
+                    name: 'descriviIndirizziIntent',
+                    confirmationStatus: 'NONE',
+                    slots: {}
+                })
+                .getResponse();
+        } else {
+            return handlerInput.responseBuilder
+                .speak(speakOutput)
+                .reprompt('')
+                .getResponse();
+        }
+    }
+};
+
+const descriviIndirizziIntentHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'descriviIndirizziIntent';
+    },
+    handle(handlerInput) {
+        const {requestEnvelope,responseBuilder} = handlerInput;
+        const {intent}= requestEnvelope.request;
+        const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
+
+        let speakOutput="Problemi descriviScuole";
+        const repromptText='Abbiamo Problemi';
+        let nome="";
+
+        nome = sessionAttributes['nomeUtente'];
+
+        if (intent.confirmationStatus === 'CONFIRMED'){
+            const indirizzo = Alexa.getSlotValue(requestEnvelope, 'indirizzo');
+            switch (indirizzo) {
+                case "chimica":
+                    speakOutput = nome + " " + handlerInput.t('DESC_TECNOLOGICO_CHIMICA_MSG');
+                    break;
+                case "informatica":
+                    speakOutput = nome + " " + handlerInput.t('DESC_TECNOLOGICO_INFORMATICA_MSG');
+                    break;
+                case "elettronica":
+                    speakOutput = nome + " " + handlerInput.t('DESC_TECNOLOGICO_ELETTRONICA_MSG');
+                    break;
+                case "meccanica":
+                    speakOutput = nome + " " + handlerInput.t('DESC_TECNOLOGICO_MECCANICA_MSG');
+                    break;
+                case "turismo":
+                    speakOutput = nome + " " + handlerInput.t('DESC_ECONOMICO_TURISMO_MSG');
+                    break;
+                case "afm":
+                    speakOutput = nome + " " + handlerInput.t('DESC_ECONOMICO_SIA_MSG');
+                    break;
+            }
+            return handlerInput.responseBuilder
+                .speak(speakOutput)
+                .addDelegateDirective({
+                    name: 'descriviSbocchiIntent',
+                    confirmationStatus: 'NONE',
+                    slots: {}
+                })
+                .getResponse();
+
 
         } else {
             speakOutput = 'Mi dispiace ' + nome;
@@ -188,6 +259,55 @@ const descriviScuoleIntentHandler = {
     }
 };
 
+
+const descriviSbocchiIntentHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'descriviSbocchiIntent';
+    },
+    handle(handlerInput) {
+        const {requestEnvelope,responseBuilder} = handlerInput;
+        const {intent}= requestEnvelope.request;
+        const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
+
+        let speakOutput="Problemi descriviScuole";
+        const repromptText='Abbiamo Problemi';
+        let nome="";
+
+        nome = sessionAttributes['nomeUtente'];
+
+        if (intent.confirmationStatus === 'CONFIRMED'){
+            const indirizzo = Alexa.getSlotValue(requestEnvelope, 'sbocco');
+            switch (indirizzo) {
+                case "chimica":
+                    speakOutput = nome + " " + handlerInput.t('DESC_CHIMICA_COMPETENZE_MSG');
+                    break;
+                case "informatica":
+                    speakOutput = nome + " " + handlerInput.t('DESC_INFORMATICA_COMPETENZE_MSG');
+                    break;
+                case "elettronica":
+                    speakOutput = nome + " " + handlerInput.t('DESC_ELETTRONICA_COMPETENZE_MSG');
+                    break;
+                case "meccanica":
+                    speakOutput = nome + " " + handlerInput.t('DESC_MECCANICA_COMPETENZE_MSG');
+                    break;
+                case "turismo":
+                    speakOutput = nome + " " + handlerInput.t('DESC_TURISMO_COMPETENZE_MSG');
+                    break;
+                case "afm":
+                    speakOutput = nome + " " + handlerInput.t('DESC_ECONOMICO_SIA_COMPETENZE_MSG');
+                    break;
+            }
+
+        } else {
+            speakOutput = 'Mi dispiace Descrivi scuole ' + nome;
+        }
+        return handlerInput.responseBuilder
+            .speak(speakOutput)
+            .reprompt("")
+            .getResponse();
+    }
+};
 
 const HelpIntentHandler = {
     canHandle(handlerInput) {
@@ -357,6 +477,8 @@ exports.handler = Alexa.SkillBuilders.custom()
         descrizioneIstitutoIntentHandler,
         descriviScelteIntentHandler,
         descriviScuoleIntentHandler,
+        descriviIndirizziIntentHandler,
+        descriviSbocchiIntentHandler,
         nomeIntentHandler,
         HelpIntentHandler,
         CancelAndStopIntentHandler,
