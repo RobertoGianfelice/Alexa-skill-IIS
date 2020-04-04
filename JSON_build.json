@@ -42,11 +42,10 @@
                     "slots": [],
                     "samples": [
                         "istituto",
-                        "descrivi scuola",
-                        "descriviti",
-                        "descrivi l'iis",
-                        "descrivi la scuola",
-                        "descrivi l'isituto"
+                        "describe the school",
+                        "describe yourself",
+                        "describe the  i i s",
+                        "describe the institute"
                     ]
                 },
                 {
@@ -84,17 +83,15 @@
                             "type": "AMAZON.Person",
                             "samples": [
                                 "{nomeUtente}",
-                                "sono {nomeUtente}",
-                                "il mio nome è {nomeUtente}",
-                                "mi chiamo {nomeUtente}"
+                                "i'm {nomeUtente}",
+                                "My name is {nomeUtente}"
                             ]
                         }
                     ],
                     "samples": [
-                        "salve",
-                        "sono {nomeUtente}",
-                        "mi chiamo {nomeUtente}",
-                        "il mio nome è {nomeUtente}"
+                        "hello",
+                        "I'm {nomeUtente}",
+                        "My name is {nomeUtente}"
                     ]
                 },
                 {
@@ -105,6 +102,49 @@
                         "fra cosa posso scegliere",
                         "Cosa posso trovare",
                         "scelte"
+                    ]
+                },
+                {
+                    "name": "descriviIndirizziIntent",
+                    "slots": [
+                        {
+                            "name": "indirizzo",
+                            "type": "indirizzoType",
+                            "samples": [
+                                "dettaglia {indirizzo}",
+                                "vorrei dettagli su {indirizzo}",
+                                "{indirizzo}",
+                                "mi interesa {indirizzo}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "descrivi {indirizzo}",
+                        "desidero sapere di più su {indirizzo}",
+                        "dettagli su {indirizzo}"
+                    ]
+                },
+                {
+                    "name": "descriviSbocchiIntent",
+                    "slots": [
+                        {
+                            "name": "sbocchi",
+                            "type": "indirizzoType",
+                            "samples": [
+                                "quali sbocchi ha {sbocchi}",
+                                "vorrei conoscere gli sbocchi professionali di {sbocchi}",
+                                "{sbocchi}",
+                                "cosa posso fare con {sbocchi}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "cosa posso fare dopo",
+                        "quali sbocci avrei",
+                        "sbocchi",
+                        "sbocchi {sbocchi}",
+                        "desidero conosce sbocchi di {sbocchi}",
+                        "dettagli su sbocchi di {sbocchi}"
                     ]
                 }
             ],
@@ -145,6 +185,54 @@
                                     "liceo",
                                     "LSA"
                                 ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "indirizzoType",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "afm",
+                                "synonyms": [
+                                    "sia"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "turismo",
+                                "synonyms": [
+                                    "internzionale",
+                                    "turistico"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "elettronica"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "meccanica",
+                                "synonyms": [
+                                    "meccatronica"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "chimica",
+                                "synonyms": [
+                                    "biologia"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "informatica"
                             }
                         }
                     ]
@@ -201,6 +289,42 @@
                             "prompts": {
                                 "confirmation": "Confirm.Slot.410047042681.1173600887138",
                                 "elicitation": "Elicit.Slot.705382926643.120796720177"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "descriviIndirizziIntent",
+                    "confirmationRequired": true,
+                    "prompts": {
+                        "confirmation": "Confirm.Intent.243991718205"
+                    },
+                    "slots": [
+                        {
+                            "name": "indirizzo",
+                            "type": "indirizzoType",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.243991718205.938892389520"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "descriviSbocchiIntent",
+                    "confirmationRequired": true,
+                    "prompts": {
+                        "confirmation": "Confirm.Intent.964060320150"
+                    },
+                    "slots": [
+                        {
+                            "name": "sbocchi",
+                            "type": "indirizzoType",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1162323394893.1434703898570"
                             }
                         }
                     ]
@@ -274,7 +398,7 @@
                 "variations": [
                     {
                         "type": "PlainText",
-                        "value": "vuoi che ti descriva l'istituto?"
+                        "value": "do you want me to describe the institution?"
                     }
                 ]
             },
@@ -340,11 +464,11 @@
                 "variations": [
                     {
                         "type": "PlainText",
-                        "value": "come ti chiami"
+                        "value": "your name is"
                     },
                     {
                         "type": "PlainText",
-                        "value": "Quale è il tuo nome"
+                        "value": "what's you name"
                     }
                 ]
             },
@@ -371,7 +495,7 @@
                 "variations": [
                     {
                         "type": "PlainText",
-                        "value": "Quindi il tuo nome è {nomeUtente} , ho capito bene?"
+                        "value": "So, you are {nomeUtente} , it's correct?"
                     }
                 ]
             },
@@ -425,6 +549,66 @@
                     {
                         "type": "PlainText",
                         "value": "va bene {scuola}"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Intent.243991718205",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Ci concentriamo su {indirizzo} , va bene?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "descrivo {indirizzo}"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "questo è {indirizzo} in poche parole"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "quindi ti descriverò {indirizzo}"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.243991718205.938892389520",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "casa ti interessa?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "quale indirizzo ti interessa?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Di quale indirizzo vuoi parlare?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Di quale indirizzo verresti sapere  delle informazioni"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1162323394893.1434703898570",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "mi serve di conoscere l'indirizzo a cui sei interessato"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Intent.964060320150",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Descrivo gli sbocchi di {sbocchi} ?"
                     }
                 ]
             }
