@@ -1,7 +1,7 @@
 {
-    "name": "aosta aquila",
+    "name": "daosta laquila",
     "version": "0.4.0",
-    "description": "aosta aquila skill",
+    "description": "daosta laquila skill",
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"

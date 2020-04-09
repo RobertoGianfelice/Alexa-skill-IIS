@@ -1,7 +1,7 @@
 {
     "interactionModel": {
         "languageModel": {
-            "invocationName": "aosta aquila",
+            "invocationName": "daosta laquila",
             "intents": [
                 {
                     "name": "AMAZON.CancelIntent",
@@ -42,10 +42,11 @@
                     "slots": [],
                     "samples": [
                         "istituto",
-                        "describe the school",
-                        "describe yourself",
-                        "describe the  i i s",
-                        "describe the institute"
+                        "descrivi scuola",
+                        "descriviti",
+                        "descrivi l'iis",
+                        "descrivi la scuola",
+                        "descrivi l'isituto"
                     ]
                 },
                 {
@@ -82,16 +83,21 @@
                             "name": "nomeUtente",
                             "type": "AMAZON.Person",
                             "samples": [
+                                "piacere sono {nomeUtente}",
+                                "{nomeUtente} è il mio nome",
+                                "Io sono {nomeUtente}",
                                 "{nomeUtente}",
-                                "i'm {nomeUtente}",
-                                "My name is {nomeUtente}"
+                                "sono {nomeUtente}",
+                                "il mio nome è {nomeUtente}",
+                                "mi chiamo {nomeUtente}"
                             ]
                         }
                     ],
                     "samples": [
-                        "hello",
-                        "I'm {nomeUtente}",
-                        "My name is {nomeUtente}"
+                        "salve",
+                        "sono {nomeUtente}",
+                        "mi chiamo {nomeUtente}",
+                        "il mio nome è {nomeUtente}"
                     ]
                 },
                 {
@@ -278,16 +284,17 @@
                 {
                     "name": "nomeIntent",
                     "delegationStrategy": "ALWAYS",
-                    "confirmationRequired": false,
-                    "prompts": {},
+                    "confirmationRequired": true,
+                    "prompts": {
+                        "confirmation": "Confirm.Intent.1248544246977"
+                    },
                     "slots": [
                         {
                             "name": "nomeUtente",
                             "type": "AMAZON.Person",
-                            "confirmationRequired": true,
+                            "confirmationRequired": false,
                             "elicitationRequired": true,
                             "prompts": {
-                                "confirmation": "Confirm.Slot.410047042681.1173600887138",
                                 "elicitation": "Elicit.Slot.705382926643.120796720177"
                             }
                         }
@@ -338,7 +345,7 @@
                 "variations": [
                     {
                         "type": "PlainText",
-                        "value": "Abbiamo varei scelte , quale ti incurisisce"
+                        "value": "Abbiamo varei scelte , quale ti incurisisce?"
                     },
                     {
                         "type": "PlainText",
@@ -346,11 +353,11 @@
                     },
                     {
                         "type": "PlainText",
-                        "value": "A quale scuola sei interessato fra quelle disponibili"
+                        "value": "A quale scuola sei interessato fra quelle disponibili?"
                     },
                     {
                         "type": "PlainText",
-                        "value": "Ci sono diverse opportunità. Di quale scuola vuoi che ti parli"
+                        "value": "Ci sono diverse opportunità. Di quale scuola vuoi che ti parli?"
                     }
                 ]
             },
@@ -398,7 +405,7 @@
                 "variations": [
                     {
                         "type": "PlainText",
-                        "value": "do you want me to describe the institution?"
+                        "value": "vuoi che ti descriva l'istituto?"
                     }
                 ]
             },
@@ -464,11 +471,15 @@
                 "variations": [
                     {
                         "type": "PlainText",
-                        "value": "your name is"
+                        "value": "Il tuo nome?"
                     },
                     {
                         "type": "PlainText",
-                        "value": "what's you name"
+                        "value": "come ti chiami?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Quale è il tuo nome?"
                     }
                 ]
             },
@@ -495,7 +506,15 @@
                 "variations": [
                     {
                         "type": "PlainText",
-                        "value": "So, you are {nomeUtente} , it's correct?"
+                        "value": "Quindi il tuo nome è {nomeUtente} ,giusto?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Sei {nomeUtente} , giusto?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Quindi il tuo nome è {nomeUtente} , ho capito bene?"
                     }
                 ]
             },
@@ -578,7 +597,7 @@
                 "variations": [
                     {
                         "type": "PlainText",
-                        "value": "casa ti interessa?"
+                        "value": "cosa ti interessa?"
                     },
                     {
                         "type": "PlainText",
@@ -609,6 +628,27 @@
                     {
                         "type": "PlainText",
                         "value": "Descrivo gli sbocchi di {sbocchi} ?"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Intent.1248544246977",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Sei {nomeUtente} , giusto?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Ho capito bene, sei {nomeUtente} ?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Quindi il tuo nome è {nomeUtente} , giusto?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Quindi il tuo nome è {nomeUtente} , ho capito bene"
                     }
                 ]
             }
