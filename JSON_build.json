@@ -6,14 +6,18 @@
                 {
                     "name": "AMAZON.CancelIntent",
                     "samples": [
-                        "arrivederci",
-                        "ciao",
+                        "cancella",
                         "chiudi"
                     ]
                 },
                 {
                     "name": "AMAZON.HelpIntent",
                     "samples": [
+                        "aiutami",
+                        "mi dai un aiuto",
+                        "come funzioni",
+                        "non so cosa chiedere",
+                        "cosa posso chiedere",
                         "cosa",
                         "help",
                         "aiuto"
@@ -22,6 +26,10 @@
                 {
                     "name": "AMAZON.StopIntent",
                     "samples": [
+                        "sono soddisfatto",
+                        "ho finito",
+                        "grazie",
+                        "basta grazie",
                         "fine",
                         "stop",
                         "basta"
@@ -317,7 +325,13 @@
                             "elicitationRequired": true,
                             "prompts": {
                                 "elicitation": "Elicit.Slot.243991718205.938892389520"
-                            }
+                            },
+                            "validations": [
+                                {
+                                    "type": "hasEntityResolutionMatch",
+                                    "prompt": "Slot.Validation.645509911067.92998401980.227679927227"
+                                }
+                            ]
                         }
                     ]
                 },
@@ -335,7 +349,13 @@
                             "elicitationRequired": true,
                             "prompts": {
                                 "elicitation": "Elicit.Slot.1162323394893.1434703898570"
-                            }
+                            },
+                            "validations": [
+                                {
+                                    "type": "hasEntityResolutionMatch",
+                                    "prompt": "Slot.Validation.1426111086341.1150696951527.1559358109096"
+                                }
+                            ]
                         }
                     ]
                 }
@@ -472,6 +492,18 @@
             {
                 "id": "Elicit.Slot.705382926643.120796720177",
                 "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "posso conoscere il tuo nome"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Posso sapere come ti chiami?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "mi piacerebbe conoscere il tuo nome"
+                    },
                     {
                         "type": "PlainText",
                         "value": "Il tuo nome?"
@@ -676,6 +708,40 @@
                     {
                         "type": "PlainText",
                         "value": "Quindi il tuo nome è {nomeUtente} , ho capito bene"
+                    }
+                ]
+            },
+            {
+                "id": "Slot.Validation.1426111086341.1150696951527.1559358109096",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Non riconosco questo indirizzo fra quelli presenti nella nostra scuola, potresti riprovare per favore?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Temo di non aver capito bene, puoi ripetere?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "scusami, ma non conosco questo indirizzo, potresti ripetere per favore?"
+                    }
+                ]
+            },
+            {
+                "id": "Slot.Validation.645509911067.92998401980.227679927227",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "scusami, ma non conosco questo indirizzo, potresti ripetere per favore?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Temo di non aver capito bene, puoi ripetere?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Non riconosco questo indirizzo fra quelli presenti nella nostra scuola, potresti riprovare per favore?"
                     }
                 ]
             }
